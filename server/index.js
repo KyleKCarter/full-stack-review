@@ -7,6 +7,10 @@ const app = express()
 
 const {SERVER_PORT, SESSION_SECRET, CONNECTION_STRING} = process.env;
 
+//controllers
+const authentication = require('./controllers/authController')
+const {getReviews, postReview, editReview, deleteReview} = require('./controllers/reviewsController')
+
 massive(CONNECTION_STRING)
     .then(db => {
         app.set('db', db)
@@ -30,9 +34,15 @@ app.use(
 app.use(express.json())
 
 //authentication
-app.post('/auth/register', );
-app.post('/auth/login', );
-app.get('/auth/logout', );
+app.post('/auth/register', authentication.register);
+app.post('/auth/login', authentication.login);
+app.get('/auth/logout', authentication.lOgOuT);
+
+//reviews
+app.get('/api/reviews', getReviews)
+app.post('/api/reviews', postReview)
+app.put('/api/reviews/:id', editReview)
+app.delete('/api/reviews/:id', deleteReview)
 
 
 

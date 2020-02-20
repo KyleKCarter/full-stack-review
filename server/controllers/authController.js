@@ -4,7 +4,7 @@ const register = (req, res) => {
     const db = req.app.get('db')
     const {username, password, profile_img} = req.body;
     bcrypt.hash(password, 12).then((hash) => {
-        db.authentication.registerUser([username, password, profile_img])
+        db.authentication.registerUser([username, hash, profile_img])
             .then(user => {
                 res.sendStatus(200)
             })
