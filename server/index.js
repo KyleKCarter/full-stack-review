@@ -10,6 +10,7 @@ const {SERVER_PORT, SESSION_SECRET, CONNECTION_STRING} = process.env;
 //controllers
 const authentication = require('./controllers/authController')
 const {getReviews, postReview, editReview, deleteReview} = require('./controllers/reviewsController')
+const {getPosters, addPoster} = require('./controllers/movieController')
 
 massive(CONNECTION_STRING)
     .then(db => {
@@ -44,6 +45,8 @@ app.post('/api/reviews', postReview)
 app.put('/api/reviews/:id', editReview)
 app.delete('/api/reviews/:id', deleteReview)
 
-
+//movies
+app.get('/api/poster', getPosters);
+app.post('/api/poster', addPoster);
 
 app.listen(SERVER_PORT, () => console.log(`Skynet is running on ${SERVER_PORT}`))
