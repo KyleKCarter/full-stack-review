@@ -8,8 +8,8 @@ const getReviews = (req, res) => {
 const postReview = (req, res) => {
     const db = req.app.get('db')
     const {movie_title, review, rating} = req.body
-    const {id} = req.session.user
-    db.reviews.postReview([id, movie_title, review, rating])
+    const id = req.session.user.id
+    db.reviews.postReview([id, movie_title, rating, review])
         .then(post => {
             res.sendStatus(200)
         })
@@ -23,7 +23,6 @@ const editReview = (req, res) => {
     const db = req.app.get('db')
     const {review, rating} = req.body;
     const {id} = req.params;
-    console.log(id)
     db.reviews.editReview([id, review, rating])
         .then(() => res.sendStatus(200))
         .catch(error => {

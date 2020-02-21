@@ -33,7 +33,6 @@ const login = (req, res) => {
                         username: username,
                         profile_img: profile_img
                     }
-                    console.log(req.session.user)
                     res.status(200).json(username)
                 } else {
                     res.status(403).json('incorrect username or password, a T1000 has been dispatched to your location')
@@ -48,8 +47,14 @@ const lOgOuT = (req, res) => {
     res.sendStatus(200)
 }
 
+// const getUser = (req, res) => {
+//     console.log(req.session)
+//     res.status(200).json(req.session.user)
+// }
+
 module.exports = {
     register,
     login,
-    lOgOuT
+    lOgOuT,
+    // getUser
 }

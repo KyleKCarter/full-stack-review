@@ -38,6 +38,7 @@ app.use(express.json())
 app.post('/auth/register', authentication.register);
 app.post('/auth/login', authentication.login);
 app.get('/auth/logout', authentication.lOgOuT);
+// app.get('/auth/user', authentication.getUser);
 
 //reviews
 app.get('/api/reviews', getReviews)
